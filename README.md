@@ -2,4 +2,4 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/qtnm3djh4x50r4k2?svg=true)](https://ci.appveyor.com/project/OneFrameLink/ofl-extensions-logging-observable)
 
 # Ofl.Extensions.Logging.Observable
-Observable extensions for logging.
+A logging provider for .NET that allows hooking into the log event stream via an IObservable.
