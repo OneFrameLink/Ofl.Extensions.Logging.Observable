@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Xunit;
 using System.Linq;
-using Ofl.Core.Threading.Tasks;
+using Ofl.Threading.Tasks;
 
 namespace Ofl.Extensions.Logging.Observable.Tests
 {
@@ -96,15 +96,15 @@ namespace Ofl.Extensions.Logging.Observable.Tests
             Assert.Equal(3, allLogEntries.Count);
 
             // Assert contents.
-            Assert.NotNull(allLogEntries.SingleOrDefault(le => le.FormattedMessage == "From thread 01."));
-            Assert.NotNull(allLogEntries.SingleOrDefault(le => le.FormattedMessage == "From thread 02."));
-            Assert.NotNull(allLogEntries.SingleOrDefault(le => le.FormattedMessage == "From main thread."));
+            Assert.NotNull(allLogEntries.Cast<LogEntry?>().SingleOrDefault(le => le.Value.FormattedMessage == "From thread 01."));
+            Assert.NotNull(allLogEntries.Cast<LogEntry?>().SingleOrDefault(le => le.Value.FormattedMessage == "From thread 02."));
+            Assert.NotNull(allLogEntries.Cast<LogEntry?>().SingleOrDefault(le => le.Value.FormattedMessage == "From main thread."));
 
             // Check main thread entries only.
-            Assert.Equal(1, mainThreadEvents.Count);
+            Assert.Single(mainThreadEvents);
 
             // Assert contents.
-            Assert.NotNull(mainThreadEvents.SingleOrDefault(le => le.FormattedMessage == "From main thread."));
+            Assert.NotNull(mainThreadEvents.Select(o => (LogEntry?) o).SingleOrDefault(le => le.Value.FormattedMessage == "From main thread."));
         }
 
         [Fact]
@@ -190,9 +190,9 @@ namespace Ofl.Extensions.Logging.Observable.Tests
             Assert.Equal(3, all.Count);
 
             // Assert messages.
-            Assert.NotNull(all.Single(le => le.FormattedMessage == "Logged from the main thread."));
-            Assert.NotNull(all.Single(le => le.FormattedMessage == threadLogEntries.First().FormattedMessage));
-            Assert.NotNull(all.Single(le => le.FormattedMessage == threadLogEntries.ElementAt(1).FormattedMessage));
+            Assert.NotNull(all.Cast<LogEntry?>().Single(le => le.Value.FormattedMessage == "Logged from the main thread."));
+            Assert.NotNull(all.Cast<LogEntry?>().Single(le => le.Value.FormattedMessage == threadLogEntries.First().FormattedMessage));
+            Assert.NotNull(all.Cast<LogEntry?>().Single(le => le.Value.FormattedMessage == threadLogEntries.ElementAt(1).FormattedMessage));
         }
 
         [Fact]
@@ -232,7 +232,7 @@ namespace Ofl.Extensions.Logging.Observable.Tests
 
                     // Logging was performed from the main thread.
                     // Validate that nothing was collected.
-                    Assert.Equal(0, collected.Count);
+                    Assert.Empty(collected);
                 }
 
                 // Signal the thread is done.

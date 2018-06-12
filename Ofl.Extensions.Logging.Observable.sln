@@ -11,6 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Extensions.Logging.Obse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Extensions.Logging.Observable", "src\Ofl.Extensions.Logging.Observable\Ofl.Extensions.Logging.Observable.csproj", "{024F7CFB-EEF6-4C6A-8014-6CC71A549801}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-level items", "solution-level items", "{9282B04A-16E8-4924-8760-8FB54E84C70F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		appveyor.yml = appveyor.yml
+		directory.build.props = directory.build.props
+		LICENSE = LICENSE
+		Ofl.Extensions.Logging.Observable.sln.DotSettings = Ofl.Extensions.Logging.Observable.sln.DotSettings
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +63,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EB37684D-7B30-4422-8B8F-24EFD33379D2} = {06B42D4D-1485-4B5A-B265-F53A968B9556}
 		{024F7CFB-EEF6-4C6A-8014-6CC71A549801} = {839F2477-F5C0-4ABE-A896-7F99D544A95F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38703B57-246A-4038-8AC4-B257A8320D37}
 	EndGlobalSection
 EndGlobal
